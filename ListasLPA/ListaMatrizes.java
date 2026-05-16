@@ -5,17 +5,18 @@ public class ListaMatrizes{
         Scanner sc=new Scanner(System.in);
         
         byte lVal=11;
-        String nFeita = new String("N/A"), cordenadas = new String("Cordenadas");
+        String nFeita = new String("N/A"), cordenadas = new String("Cordenadas"), calcMaMe = new String("Maior e Menor Elemento");
         String[] lista = new String[10];
         String qualquer;
         for(int i=0; i>10;i++){
             lista[i]=nFeita;
         }
         lista[2]=cordenadas;
+        lista[3]=calcMaMe;
 
         while (lVal!=0){
             System.out.println();
-            System.out.println("Digite o valor da lista a ser acessada: ");
+            System.out.println("Digite o valor da lista a ser acessada:");
             System.out.println();
             System.out.println("1 -  "+ lista[0]);
             System.out.println("2 -  "+ lista[1]);
@@ -75,15 +76,44 @@ public class ListaMatrizes{
                     }
                     if(ver==false){
                         System.out.println("Elemento não encontradoo!!");
+                    }                    
+                    break;
+                case 4:
+                    System.out.println("Digite 12 elementos:");
+                    System.out.println();
+                    int[][] mat2=new int[3][4];
+                    byte revCon2=12;
+                    int receb, oldMa=-2147483647, oldMe=2147483647;
+
+                    for(int i=0;i<4;i++){
+                        for(int j=0;i<3;j++){
+                            System.out.println("(Restam "+revCon2+" numeros)");
+                            System.out.println();
+                            receb=sc.nextInt();
+                            if(receb>oldMa){
+                                oldMa=receb;
+                            } else if(receb<oldMe){
+                                oldMe=receb;
+                            }
+
+                            mat2[i][j]=receb;
+                            revCon2--;
+                        }
                     }
 
-                    System.out.println();
-                    System.out.println("Digite qualquer coisa para sair da atividade:");
-                    qualquer=sc.nextLine();
-                    System.out.println();
-
-                case 4:
-                    System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
+                    for(int i=0;i<3;i++){
+                        for(int j=0;i<4;j++){
+                            if(mat2[i][j]==oldMa){
+                                System.out.println("O maior numero é '"+oldMa+"', na coluna '"+i+"' e linha '"+j+"',");
+                            } else if(mat2[i][j]==oldMe){
+                                System.out.println("enquanto o menor numero é '"+oldMe+"', na coluna '"+i+"' e linha '"+j+"',");
+                            }
+                        }
+                    }
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                    }
                     break;
                 case 5:
                     System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
@@ -107,6 +137,11 @@ public class ListaMatrizes{
                     System.out.println("!!Problema não existe!! Escolha um numero listado na lista");
                     break;
             } 
+
+            try {
+                Thread.sleep(3500);
+            } catch (InterruptedException e) {
+            }
 
         }
         System.out.println();
