@@ -15,7 +15,7 @@ public class ListaMatrizes{
 
         while (lVal!=0){
             System.out.println();
-            System.out.println("Digite o valor da lista a ser acessada:");
+            System.out.println("Digite o valor da lista a ser acessada: ");
             System.out.println();
             System.out.println("1 -  "+ lista[0]);
             System.out.println("2 -  "+ lista[1]);
