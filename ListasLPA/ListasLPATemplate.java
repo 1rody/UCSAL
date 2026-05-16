@@ -67,7 +67,12 @@ public class ListasLPATemplate{
                 default:
                     System.out.println("!!Problema não existe!! Escolha um numero listado na lista");
                     break;
-            } 
+            }
+
+            try {
+            Thread.sleep(3500);
+            } catch (InterruptedException e) {
+            }
 
         }
         System.out.println();
