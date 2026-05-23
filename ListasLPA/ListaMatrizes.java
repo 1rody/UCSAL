@@ -80,37 +80,34 @@ public class ListaMatrizes{
                     }                    
                     break;
                 case 4:
-                    System.out.println("Digite 12 elementos:");
-                    System.out.println();
-                    int[][] mat2=new int[3][4];
-                    byte revCon2=12;
-                    int receb, oldMa=-2147483647, oldMe=2147483647;
+        int[][] Z = new int[3][4];
 
-                    for(int i=0;i<4;i++){
-                        for(int j=0;i<3;j++){
-                            System.out.println("(Restam "+revCon2+" numeros)");
-                            System.out.println();
-                            receb=sc.nextInt();
-                            if(receb>oldMa){
-                                oldMa=receb;
-                            } else if(receb<oldMe){
-                                oldMe=receb;
-                            }
+        int O = 0, s = 0, j = 10000, v = 0;
 
-                            mat2[i][j]=receb;
-                            revCon2--;
-                        }
-                    }
+        System.out.println("Informe numeros: ");
+        for(int i = 0; i < 3; i++ ){
+            for(int a = 0; a < 4; a++){
+                Z[i][a] = sc.nextInt();
+            }
 
-                    for(int i=0;i<3;i++){
-                        for(int j=0;i<4;j++){
-                            if(mat2[i][j]==oldMa){
-                                System.out.println("O maior numero é '"+oldMa+"', na coluna '"+i+"' e linha '"+j+"',");
-                            } else if(mat2[i][j]==oldMe){
-                                System.out.println("enquanto o menor numero é '"+oldMe+"', na coluna '"+i+"' e linha '"+j+"',");
-                            }
-                        }
-                    }
+        }
+        for(int i = 0; i < 3; i++){
+            for(int a = 0; a < 4; a++){
+                if(Z[i][a] >= s){
+                    s = Z[i][a];
+                }
+                if(Z[i][a] <= j){
+                    j = Z[i][a];
+                }
+                v = v + Z[i][a];
+            }
+
+        }
+        System.out.println("Menor numero: " + j +
+               " Maior numero: " + s +
+                " Resultado geral: " + v );
+    }
+}
                     try {
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
