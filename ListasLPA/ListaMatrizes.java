@@ -116,6 +116,27 @@ public class ListaMatrizes{
                 case 5:
                     System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
                     break;
+                case 6:
+                    int[][] za = new int[4][4];
+
+                    int s2;
+
+                    System.out.println("Informe numeros: ");
+                    for(int i = 0; i < 4; i++){
+                        for(int a = 0; a < 4; a++){
+                            za[i][a] = sc.nextInt();
+                        }
+                    }
+                    for(int i = 0; i < 4; i++){
+                        s2 = s2 + za[i][i];
+                        //O za[i][i] vai adicionando  para a diagonal por consequencia da equilateriedade.
+                    }
+                    System.out.println("A sequencia da diagonal é" + s2);
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                    }
+                    break;
                 case 7:
                     int[][] matriz=new int[20][20];
                     int[][] at=new int[20][20];
@@ -147,9 +168,6 @@ public class ListaMatrizes{
                         Thread.sleep(5000);
                     } catch (InterruptedException e) {
                     }
-                    break;
-                case 6:
-                    System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
                     break;
                 case 8:
                     System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
