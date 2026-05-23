@@ -5,7 +5,7 @@ public class ListaMatrizes{
         Scanner sc=new Scanner(System.in);
         
         byte lVal=11;
-        String nFeita = new String("N/A"), cordenadas = new String("Cordenadas"), calcMaMe = new String("Maior e Menor Elemento");
+        String nFeita = new String("N/A"), cordenadas = new String("Cordenadas"), calcMaMe = new String("Maior e Menor Elemento"), matizmatiz = new String("Matriz, Matriz");
         String[] lista = new String[10];
         String qualquer;
         for(int i=0; i>10;i++){
@@ -13,6 +13,7 @@ public class ListaMatrizes{
         }
         lista[2]=cordenadas;
         lista[3]=calcMaMe;
+        lista[6]=matizmatiz;
 
         while (lVal!=0){
             System.out.println();
@@ -118,10 +119,39 @@ public class ListaMatrizes{
                 case 5:
                     System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
                     break;
-                case 6:
-                    System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
-                    break;
                 case 7:
+                    int[][] matriz=new int[20][20];
+                    int[][] at=new int[20][20];
+
+
+                    System.out.println("Digite 40 (sim) numeros:");
+                    for(int i=0; i<20; i++){
+                        for(int c=0; c<20; c++){
+                            matriz[i][c]=sc.nextInt();
+                        }
+                    }
+
+                    System.out.println();
+
+                    for(int i=0; i<20; i++){
+                       for(int c=0; c<20; c++){
+                            at[c][i]=matriz[i][c];
+                        }
+                    }
+
+                    for(int i=0; i<20; i++){
+                       for(int c=0; c<20; c++){
+                          System.out.print(at[i][c]+" ");
+                        }
+                        System.out.println();
+                    }
+                    
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                    }
+                    break;
+                case 6:
                     System.out.println("!!Problema não reslovido/em andamento!! Escolha outra sem marcação N/A");
                     break;
                 case 8:
