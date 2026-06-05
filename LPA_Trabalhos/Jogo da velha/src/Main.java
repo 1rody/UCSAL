@@ -9,7 +9,9 @@ public class Main {
 
         int[] playerOne = new int[9];
         int[] playerTwo = new int[9];
-        String selectType;
+        
+        //byte para armazenamento do simbolo escolhido pelo kjogador
+        byte selectType;
 
         //char 'c' pra o  
         char c;
@@ -47,9 +49,9 @@ public class Main {
         //boolean simples para o teste/registro do input do jogador na partida;
         boolean valInp=false;
 
-        //escolha de simbolo do jogador iniciante (x = 1, o = 0)
-        //possui valor pois compiladores sao chatos e requerem inicialização fora de switch tambem aff;
-        byte escolha=67;
+        //cheque se o player 1 tem o simbolo X ou nao (ja que só tem 2 esolhas possiveis foi possivel simplificar a isso)
+        //variavel inicializada pq Computador
+        boolean player1X=true;
 
 
         //sorteio que definira aleatoriamente qual o jogador;
@@ -65,59 +67,70 @@ public class Main {
         System.out.println(playerNames[1] + " Confirmado!");
         System.out.println();
 
-        //soteio para definir qual jogador comeca;
+        //soteio para definir qual jogador comeca (0=player1 1=player2);
 
         int drawnResult;
 
         Random rand = new Random();
         drawnResult = rand.nextInt(2);
 
-        drawnResult=0; //sorteio definido APENAS PARA CASO DE TESTE!!!!;
+        drawnResult=1; //sorteio definido APENAS PARA CASO DE TESTE!!!!;
 
         System.out.println("Jogador "+playerNames[drawnResult]+" vai iniciar a partida dessa vez!");
         System.out.println();
 
-        //partida
+        //após sorteio sera solicitado (ao jogador sorteado) o simbolo desejado 
         switch (drawnResult) {
             case 0:
 
                 System.out.println("Jogador " + playerNames[0] + " qual simbolo voce deseja 1- X 2- O");
-                selectType = sc.nextLine();
+                selectType = sc.nextByte();
 
-                if(selectType.equals("x")) {
-                    System.out.println("Jogador " + playerNames[0] + " Possui o simbolo X");
-                    System.out.println("Jogador " + playerNames[1] + " Possui o simbolo O");
-                    escolha=1;
-
+                switch (selectType) {
+                    case 1:
+                        System.out.println("Jogador " + playerNames[0] + " Possui o simbolo X");
+                        System.out.println("Jogador " + playerNames[1] + " Possui o simbolo O");
+                        player1X=true;
+                        break;
+                    case 2:
+                        System.out.println("Jogador " + playerNames[0] + " Possui o simbolo 0");
+                        System.out.println("Jogador " + playerNames[1] + " Possui o simbolo X");
+                        player1X=false;
+                        break;
+                    default:
+                        System.out.println("Valor invalido!! Simbolo automaticamente definido como X");
+                        player1X=true;
+                        break;
                 }
-                else {
-                    System.out.println("Jogador " + playerNames[0] + " Possui o simbolo 0");
-                    System.out.println("Jogador " + playerNames[1] + " Possui o simbolo X");
-                    escolha=2;
 
-                }
+                
                 System.out.println( " ");
                 System.out.println(" ");
 
                 break;
             case 1:
+
                 System.out.println("Jogador " + playerNames[1] + " Qual simbolo voce deseja 1- X 2- O");
-                selectType = sc.nextLine();
+                selectType = sc.nextByte();
 
-                if(selectType.equals("x")) {
-                    System.out.println("Jogador " + playerNames[0] + " Possui o simbolo X");
-                    System.out.println("Jogador " + playerNames[1] + " Possui o simbolo O");
-                    escolha=1;
-
+                switch (selectType) {
+                    case 2:
+                        System.out.println("Jogador " + playerNames[0] + " Possui o simbolo X");
+                        System.out.println("Jogador " + playerNames[1] + " Possui o simbolo O");
+                        player1X=true;
+                        break;
+                    case 1:
+                        System.out.println("Jogador " + playerNames[0] + " Possui o simbolo 0");
+                        System.out.println("Jogador " + playerNames[1] + " Possui o simbolo X");
+                        player1X=false;
+                        break;
+                    default:
+                        System.out.println("Valor invalido!! Simbolo automaticamente definido como X");
+                        player1X=false;
+                        break;
                 }
-                else {
-                    System.out.println("Jogador " + playerNames[0] + " Possui o simbolo 0");
-                    System.out.println("Jogador " + playerNames[1] + " Possui o simbolo X");
-                    escolha=2;
-
-                }
-                System.out.println( " ");
-                System.out.println(" ");
+                System.out.println();
+                System.out.println();
 
                 //----------------------
 
@@ -166,10 +179,10 @@ public class Main {
                 for(int i=0; i<3; i++){
                     for(int j=0;j<3;j++){
                         if(pos==matriz[i][j] && pos!='X' && pos!='O'){
-                            System.out.println("escolha="+escolha);
+                            System.out.println("player1X="+player1X);
                             //caso encontrar a posição na matriz, um cheque de quem possue a rodada ira rodar
                             //antes de substituir o valor;
-                            if(escolha==1){
+                            if(player1X==true){
                                 if(con==0){
                                     matriz[i][j]='X';
                                 } else {
@@ -202,13 +215,7 @@ public class Main {
             }
 
             //definir o texto que declara de quem é o turno + alternar o jogador a cada turno;
-            if(con==0){
-                System.out.println(playerNames[0]+":   (con="+con+")");
-                con++;
-            } else {
-                System.out.println(playerNames[1]+"::   (con="+con+")");
-                con--;
-            }
+            System.out.println(playerNames[0]+":   (con="+con+")");
 
             //tanto 'h' quanto 'valInp' serão reiniciados para o uso na proxima rodada;
             h=0;
@@ -219,59 +226,55 @@ public class Main {
             //resultado: 0 = partida em andamento (default pro while do jogou funcionar); 1 = jogador 1 vence; 2 = jogador 2 vence; 3 = velha;
             for(int i=0; i<3; i++){
                 
-                if((matriz[1][0]==matriz[0][0] && matriz[2][0]==matriz[0][0])
-                 ||(matriz[1][1]==matriz[1][0] && matriz[2][1]==matriz[0][1])
-                 ||(matriz[1][2]==matriz[2][0] && matriz[2][2]==matriz[0][2])){
+                //horizontal
+                if((matriz[0][1]==matriz[0][0] && matriz[0][2]==matriz[0][0])
+                 ||(matriz[1][1]==matriz[1][0] && matriz[1][2]==matriz[1][0])
+                 ||(matriz[2][1]==matriz[2][0] && matriz[2][2]==matriz[2][0])){
 
-                    if(matriz[0][0]=='X'
-                     ||matriz[0][1]=='X'
-                     ||matriz[0][2]=='X'){
+                    if(con==1){
                         
-                        if(con==0){
+                        if(player1X==true){
                                 resultado=1; //System.out.println(playerNames[0]+" Vence!!!!!!!");
                             } else {
                                 resultado=2;
                             }
                         } else {
-                            if(con==0){
+                            if(player1X==true){
                                 resultado=2; //System.out.println(playerNames[0]+" Vence!!!!!!!");
                             } else {
                                 resultado=1;
                             }
                         }
                 } else if((matriz[1][1]==matriz[0][0] && matriz[2][2]==matriz[0][0]
-                         ||matriz[1][1]==matriz[2][0] && matriz[0][2]==matriz[2][0])){
+                         ||matriz[1][1]==matriz[0][2] && matriz[2][0]==matriz[0][2])){
 
-                    if(matriz[0][0]=='X'
-                     ||matriz[0][2]=='X'){
+                    if(con==1){
                         
-                        if(con==0){
+                        if(player1X==true){
                                 resultado=1; //System.out.println(playerNames[0]+" Vence!!!!!!!");
                             } else {
                                 resultado=2;
                             }
                         } else {
-                            if(con==0){
+                            if(player1X==true){
                                 resultado=2; //System.out.println(playerNames[0]+" Vence!!!!!!!");
                             } else {
                                 resultado=1;
                             }
                         }
-                } else if((matriz[0][1]==matriz[0][0] && matriz[0][2]==matriz[0][0])
-                        ||(matriz[1][1]==matriz[0][1] && matriz[1][2]==matriz[0][1])
+                } else if((matriz[1][0]==matriz[0][0] && matriz[2][0]==matriz[0][0])
+                        ||(matriz[1][1]==matriz[0][1] && matriz[2][1]==matriz[0][1])
                         ||(matriz[1][2]==matriz[0][2] && matriz[2][2]==matriz[0][2])){
 
-                    if(matriz[0][0]=='X'
-                     ||matriz[0][1]=='X'
-                     ||matriz[0][2]=='X'){
+                    if(con==1){
                         
-                        if(con==0){
+                        if(player1X==true){
                                 resultado=1; //System.out.println(playerNames[0]+" Vence!!!!!!!");
                             } else {
                                 resultado=2;
                             }
                         } else {
-                            if(con==0){
+                            if(player1X==true){
                                 resultado=2; //System.out.println(playerNames[0]+" Vence!!!!!!!");
                             } else {
                                 resultado=1;
@@ -280,6 +283,11 @@ public class Main {
                 }
             }
             
+            if(con==0){
+                con++;
+            } else {
+                con--;
+            }
             //verificação de velhas
             if(l>=7){
                 resultado=3;
