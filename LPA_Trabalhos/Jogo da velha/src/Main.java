@@ -302,15 +302,18 @@ public class Main {
         }
 
         switch (resultado) {
+        switch (resultado) {
             case 3:
                 System.out.println("Velha!!!!!");
                 break;
             case 2:
-                System.out.println(playerNames + " ganhou!!!!!!!!!"); // Player 1
+                System.out.println(playerNamesB + " ganhou!!!!!!!!!"); 
                 break;
             case 1: 
-                System.out.println(playerNamesB +" ganhou!!!!!!!!!"); // Player 2
+                System.out.println(playerNames + " ganhou!!!!!!!!!"); 
                 break;
+        }
+        System.out.println();
         }
         System.out.println();
 
