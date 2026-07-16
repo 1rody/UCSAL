@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int number;
+
+        int resto1;
+        int resto2;
+        int resto3;
+        int resto4;
+
+        int result;
+
+        System.out.println("Escreva um numero inteiro abaixo.");
+
+        number = sc.nextInt();
+
+        if(number >= 1000) {
+            System.out.println("Esse conversor nao foi criado para um numero maior que 3 algarismos");
+        }
+        if(number < 99) {
+            System.out.println("Esse numero e muito pequeno para ser invertido (use um range de 100 - 999");
+        }
+        else {
+            resto1 = number / 100;
+
+            resto2 = number % 100;
+
+            resto3 = resto2 / 10;
+
+            resto4 = resto2 % 10;
+
+            result = (resto4 * 100) + (resto3 * 10) + resto1;
+
+            System.out.println("O resultado e " + result);
+        }
+
+        //operacoes para inverter o number
+
+
+    }
+}
