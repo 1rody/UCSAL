@@ -1,2 +1,2 @@
-# UCSAL
-Projetos feitos durante o curso da faculdade (tecnologias diversas, pastas organizadas de acordo com a materia) (abrangente a todos os semestres)
+# UCSAL - Semestre (LPA)
+Projetos feitos durante o 1 smestre na UCSAL, projetos como o trabalho do Jogo da velha usando matrizes em java, e algumas das listas de exericios introdutorios passados pelo professor Artur Kronbauer.
